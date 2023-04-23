@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Mosaic HTML Demo - Home</title>
+    <title>TeslaSchool</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- <link href="./css/vendors/flatpickr.min.css" rel="stylesheet">
     <link href="./style.css" rel="stylesheet"> -->
@@ -51,7 +51,7 @@
                                     <path
                                         d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zM7 11.4L3.6 8 5 6.6l2 2 4-4L12.4 6 7 11.4z" />
                                 </svg>
-                                <div class="font-medium">A successful toast.</div>
+                                <div class="font-medium"> {{ Session::get('success')}}</div>
                             </div>
                             <button class="opacity-70 hover:opacity-80 ml-3 mt-[3px]" @click="open = false">
                                 <div class="sr-only">Close</div>
@@ -81,7 +81,7 @@
                             <svg class="w-4 h-4 shrink-0 fill-current opacity-80 mt-[3px] mr-3" viewBox="0 0 16 16">
                                 <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12H7V7h2v5zM8 6c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z" />
                             </svg>
-                            <div class="font-medium">An informational toast.</div>
+                            <div class="font-medium"> {{ Session::get('info')}} </div>
                         </div>
                         <button class="opacity-70 hover:opacity-80 ml-3 mt-[3px]" @click="open = false">
                             <div class="sr-only">Close</div>
@@ -99,7 +99,8 @@
                         left: 50%;
                         transform: translate(-50%, -50%);
                     }
-                </style> @endif
+                </style>
+                @endif
 
 
 
@@ -114,7 +115,7 @@
         </div>
 
     </div>
-    
+
 
     <script src="{{ asset('design/js/vendors/alpinejs.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
@@ -125,7 +126,7 @@
     <script src="{{ asset('design/js/vendors/flatpickr.js') }}"></script>
     <script src="{{ asset('design/js/flatpickr-init.js') }}"></script>
     <script src="{{ asset('design/js/test.js') }}"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="module" defer>
         $(document).ready(function(){
@@ -136,7 +137,7 @@
     }, 5000);
 
 
-console.log( $("#delete"));
+
       $(".delete").on("click", function(e){
 e.preventDefault();
         let link=$(this).attr("href");

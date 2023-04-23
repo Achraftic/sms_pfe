@@ -1,4 +1,4 @@
-{{-- {{print_r($alldata); }} --}}
+
 
 @extends('admin.admin_master')
 @section('content')
@@ -14,7 +14,7 @@
 
             <!-- Left: Title -->
             <div class="mb-4 sm:mb-0">
-                <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">User view</h1>
+                <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Groupe Student</h1>
             </div>
 
             <!-- Right: Actions -->
@@ -33,12 +33,12 @@
                 </form>
 
                 <!-- Create invoice button -->
-                <button class="btn bg-indigo-500 hover:bg-indigo-600 text-white">
+                <a  href=" {{route('student.group.create')}} " class="btn bg-indigo-500 hover:bg-indigo-600 text-white">
                     <svg class="w-4 h-4 fill-current opacity-50 shrink-0 hover:rotate-180" viewBox="0 0 16 16">
                         <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
                     </svg>
-                    <span class="hidden xs:block ml-2">Add User</span>
-                </button>
+                    <span class="hidden xs:block ml-2">Add Group</span>
+                </a>
 
             </div>
 
@@ -51,7 +51,7 @@
             <div class="mb-4 sm:mb-0">
                 <ul class="flex flex-wrap -m-1">
                     <li class="m-1">
-                        <button class="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-indigo-500 text-white duration-150 ease-in-out">All <span class="ml-1 text-indigo-200"> {{  count($alldata) }} </span></button>
+                        <button class="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-indigo-500 text-white duration-150 ease-in-out">All <span class="ml-1 text-indigo-200"> {{count($data) }} </span></button>
                     </li>
                     <li class="m-1">
                         <button class="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-slate-200 hover:border-slate-300 shadow-sm bg-white text-slate-500 duration-150 ease-in-out">Paid <span class="ml-1 text-slate-400">14</span></button>
@@ -195,7 +195,7 @@
         <!-- Table -->
         <div class="bg-white shadow-lg rounded-sm border border-slate-200 mb-8">
             <header class="px-5 py-4">
-                <h2 class="font-semibold text-slate-800"> Users <span class="text-slate-400 font-medium"> ({{  count($alldata) }})</span></h2>
+                <h2 class="font-semibold text-slate-800"> Years <span class="text-slate-400 font-medium"> ({{  count($data) }})</span></h2>
             </header>
             <div x-data="handleSelect">
 
@@ -218,19 +218,11 @@
                                 </th>
 
                                 <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Role</div>
+                                    <div class="font-semibold text-left">Year</div>
                                 </th>
+
                                 <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-left">image</div>
-                                </th>
-                                <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Name</div>
-                                </th>
-                                <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Email</div>
-                                </th>
-                                <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Date Use</div>
+                                    <div class="font-semibold text-left">Date Creation</div>
                                 </th>
 
                                 <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
@@ -245,7 +237,7 @@
                             <!-- Row -->
 
 
-                            @foreach ($alldata as $key => $user)
+                            @foreach ($data as $key => $group)
                             <tr>
                                 <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
                                     <div class="flex items-center">
@@ -259,33 +251,27 @@
                                     <div class="font-medium text-sky-500">  {{$key+1}} </div>
                                 </td>
 
+
                                 <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="inline-flex font-medium bg-emerald-100 text-emerald-600  rounded-full text-center px-2.5 py-0.5">{{$user->userType}}</div>
+                                    <div class="font-medium text-slate-800"> {{$group->name}} </div>
                                 </td>
+
                                 <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <img src=" {{ asset('img/'.($user->image != null ? $user->image : "noimg.png")) }} " alt="" class="w-10 rounded-full">
-                                </td>
-                                <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-medium text-slate-800"> {{$user->name}} </div>
-                                </td>
-                                <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-medium text-slate-800"> {{$user->email}}</div>
-                                </td>
-                                <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div>{{  $user->created_at }}</div>
+                                    <div>{{  $group->created_at }}</div>
                                 </td>
 
 
-                                <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
-                                    <div class="space-x-1 flex">
-                                        <a href=" {{route('users.edit',$user->id)}} " class="text-slate-400 hover:text-slate-500 rounded-full">
+                                <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px md:w-32">
+                                    <div class="space-x-2 flex">
+                                        <a href=" {{route('student.group.edit',$group->id)}} " class="text-slate-400 hover:text-slate-500 rounded-full">
                                             <span class="sr-only">Edit</span>
                                             <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32">
                                                 <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z" />
                                             </svg>
                                         </a>
 
-                                        <a href=" {{route('users.delete',$user->id)}} " class="text-rose-500 hover:text-rose-600 rounded-full delete" id="delete">
+
+                                        <a href=" {{route('student.group.delete',$group->id)}} " class="text-rose-500 hover:text-rose-600 rounded- delete " id="">
                                             <span class="sr-only">Delete</span>
                                             <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32">
                                                 <path d="M13 15h2v6h-2zM17 15h2v6h-2z" />

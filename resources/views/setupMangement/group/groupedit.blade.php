@@ -1,20 +1,23 @@
+
+
+
 @extends('admin.admin_master')
 @section('content')
     <main class=" md:p-10 p-6">
 
-        <form action="{{route('student.class.store')}} " method="post" class=" md:p-10 p-6  space-y-8 gap-4 w-[90%] sm:w-[80%] rounded-xl mx-auto my-10 bg-white shadow-lg">
+        <form action="{{route('student.year.update',$data->id)}} " method="post" class=" md:p-10 p-6  space-y-8 gap-4 w-[90%] sm:w-[80%] rounded-xl mx-auto my-10 bg-white shadow-lg">
             @csrf
             <div class="mb-4 sm:mb-0">
-                <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Add Student Class</h1>
+                <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Edit Student Year</h1>
             </div>
             {{-- input field --}}
 
                 <div>
                     <div class="flex space-x-2 items-center my-2">
-                        <label class="block text-sm font-medium mb-1" for="Name">Student Class Name</label>
+                        <label class="block text-sm font-medium mb-1" for="Name">Student Year</label>
                         <span class="text-rose-500">*</span>
                        </div>
-                       <input id="Nameclass" class="form-input w-full" name="name" type="text" placeholder="Example: Class"/>
+                       <input id="Nameclass" class="form-input w-full" value="{{$data->name}}" name="name" type="text" placeholder="Example: Class"/>
                        @error('name')
 
                        <span class="text-red-400 text-sm p-1"> {{$message}} </span>
