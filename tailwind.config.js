@@ -1,5 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
-
+const colors = require('tailwindcss/colors');
 module.exports = {
     purge: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
@@ -17,6 +17,15 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
         },
+       
+        colors: {
+            'regal-blue': '#243c5a',
+            // you can either spread `colors` to apply all the colors
+            ...colors,
+            // or add them one by one and name whatever you want
+            amber: colors.amber,
+            emerald: colors.emerald,
+          }
     },
 
     variants: {

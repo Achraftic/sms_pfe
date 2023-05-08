@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\setup;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\GroupStudent;
-class groupStudentController extends Controller
+use App\Http\Controllers\Controller;
+use App\Models\ShiftStudent;
+
+class ShiftController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class groupStudentController extends Controller
      */
     public function index()
     {
-        $data=GroupStudent::all();
-        return view ("setupMangement.group.groupview",compact('data'));
+        $data=ShiftStudent::all();
+        return view('setupMangement.shift.index',compact('data'));
     }
 
     /**
@@ -25,7 +26,7 @@ class groupStudentController extends Controller
      */
     public function create()
     {
-        return view ('setupMangement.group.groupcreate');
+        return view ('setupMangement.shift.create');
     }
 
     /**
@@ -37,12 +38,12 @@ class groupStudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|unique:group_students',
+            'name'=>'required|unique:shift_students',
             ]);
-            $data=new GroupStudent();
+            $data=new ShiftStudent();
             $data->name = $request->name;
             $data->save();
-            return redirect()->route('student.group.index')->with('success', 'groupe created successfully.');
+            return redirect()->route('student.shift.index');
     }
 
     /**
@@ -64,9 +65,8 @@ class groupStudentController extends Controller
      */
     public function edit($id)
     {
-
-        $data=GroupStudent::find($id);
-        return view('setupMangement.group.groupedit',compact('data'));
+        $data= ShiftStudent::find($id);
+        return view("setupMangement.shift.edit",compact('data'));
     }
 
     /**
@@ -79,14 +79,12 @@ class groupStudentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:255',
             ]);
-            $data=GroupStudent::find($id);
+            $data= ShiftStudent::find($id);
             $data->name = $request->name;
             $data->save();
-            return redirect()->route('student.group.index')->with('success', 'User updated successfully.');
-
-
+            return redirect()->route('student.shift.index');
     }
 
     /**
@@ -97,11 +95,10 @@ class groupStudentController extends Controller
      */
     public function destroy($id)
     {
-        $data=GroupStudent::find($id);
-        if($data != null){
+        $data=ShiftStudent::find($id);
+        if ($data != null) {
             $data->delete();
-            return redirect()->route('student.group.index');
+            return redirect()->route('student.shift.index');
 
-        }
     }
-}
+}}

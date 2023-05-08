@@ -1,6 +1,6 @@
 require('./bootstrap');
 // import Alpine from 'alpinejs';
-import focus from '@alpinejs/focus';
+// import focus from '@alpinejs/focus';
 import jQuery from 'jquery';
 window.$ = jQuery;
 // window.Alpine = Alpine;
@@ -8,3 +8,5 @@ window.$ = jQuery;
 // Alpine.plugin(focus);
 
 // Alpine.start();
+
+

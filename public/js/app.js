@@ -2164,14 +2164,13 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '@alpinejs/focus'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 // import Alpine from 'alpinejs';
+// import focus from '@alpinejs/focus';
 
-
-window.$ = (jquery__WEBPACK_IMPORTED_MODULE_1___default());
+window.$ = (jquery__WEBPACK_IMPORTED_MODULE_0___default());
 // window.Alpine = Alpine;
 
 // Alpine.plugin(focus);

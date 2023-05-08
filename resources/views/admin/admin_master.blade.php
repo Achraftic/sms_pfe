@@ -32,6 +32,7 @@
         }
     </script>
 
+
     <!-- Page wrapper -->
     <div class="flex h-screen overflow-hidden">
 
@@ -107,8 +108,10 @@
             <!-- Site header -->
             @include('admin.body.header')
 
+            <div class="">
+                @yield('content')
 
-            @yield('content')
+            </div>
 
 
             @include('admin.body.footer')

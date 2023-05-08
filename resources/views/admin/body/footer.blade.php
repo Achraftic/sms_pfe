@@ -1,5 +1,5 @@
 
-<footer class="bg-slate-900">
+<footer class="bg-slate-900 ">
     <div class="mx-auto w-full max-w-screen-xl p-3 py-5 lg:py-6">
 
       <div class="sm:flex sm:items-center sm:justify-between">

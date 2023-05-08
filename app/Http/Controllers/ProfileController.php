@@ -119,7 +119,7 @@ class ProfileController extends Controller
         $data->mobile = $request->mobile;
         if ($request->file('image')) {
 
-            $newImgName = date('ymD') . "." . $request->image->extension();
+            $newImgName =  date('ymD') . "." . $request->image->extension();
             $request->image->move(public_path('img'), $newImgName);
             $data->image = $newImgName;
         }

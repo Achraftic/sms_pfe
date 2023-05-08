@@ -2,10 +2,10 @@
 @section('content')
     <main class=" md:p-10 p-6 min-h-[80vh] ">
 
-        <form action="{{route('student.year.store')}} " method="post" class=" md:p-10 p-6  space-y-8 gap-4 w-[90%] sm:w-[80%] rounded-xl mx-auto my-10 bg-white shadow-lg">
+        <form action="{{ route('student.group.store')}} " method="post" class=" md:p-10 p-6  space-y-8 gap-4 w-[90%] sm:w-[80%] rounded-xl mx-auto my-10 bg-white shadow-lg">
             @csrf
             <div class="mb-4 sm:mb-0">
-                <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Add Student Year</h1>
+                <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Add Student group</h1>
             </div>
             {{-- input field --}}
 

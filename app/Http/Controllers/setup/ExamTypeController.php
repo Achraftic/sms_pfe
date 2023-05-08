@@ -4,8 +4,8 @@ namespace App\Http\Controllers\setup;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\GroupStudent;
-class groupStudentController extends Controller
+use App\Models\ExamType;
+class ExamTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class groupStudentController extends Controller
      */
     public function index()
     {
-        $data=GroupStudent::all();
-        return view ("setupMangement.group.groupview",compact('data'));
+        $data=ExamType::all();
+        return view ("setupMangement.examType.index",compact('data'));
     }
 
     /**
@@ -25,7 +25,7 @@ class groupStudentController extends Controller
      */
     public function create()
     {
-        return view ('setupMangement.group.groupcreate');
+        //
     }
 
     /**
@@ -36,13 +36,7 @@ class groupStudentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=>'required|unique:group_students',
-            ]);
-            $data=new GroupStudent();
-            $data->name = $request->name;
-            $data->save();
-            return redirect()->route('student.group.index')->with('success', 'groupe created successfully.');
+        //
     }
 
     /**
@@ -64,9 +58,7 @@ class groupStudentController extends Controller
      */
     public function edit($id)
     {
-
-        $data=GroupStudent::find($id);
-        return view('setupMangement.group.groupedit',compact('data'));
+        //
     }
 
     /**
@@ -78,15 +70,7 @@ class groupStudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'=>'required',
-            ]);
-            $data=GroupStudent::find($id);
-            $data->name = $request->name;
-            $data->save();
-            return redirect()->route('student.group.index')->with('success', 'User updated successfully.');
-
-
+        //
     }
 
     /**
@@ -97,11 +81,6 @@ class groupStudentController extends Controller
      */
     public function destroy($id)
     {
-        $data=GroupStudent::find($id);
-        if($data != null){
-            $data->delete();
-            return redirect()->route('student.group.index');
-
-        }
+        //
     }
 }

@@ -10,14 +10,14 @@ class SetupMangementController extends Controller
 
     public function index (){
        $data= StudentClass::all();
-       return view ('setupMangement.index',compact('data'));
+       return view ('setupMangement.class.index',compact('data'));
 
    }
 
 
    public function create()
    {
-       return view("setupMangement.create");
+       return view("setupMangement.class.create");
    }
    public function store(Request $request)
    {
@@ -33,13 +33,13 @@ class SetupMangementController extends Controller
    public function edit($id)
    {
     $data= StudentClass::find($id);
-       return view("setupMangement.edit",compact('data'));
+       return view("setupMangement.class.edit",compact('data'));
    }
 
    public function update(Request $request, $id)
    {
        $request->validate([
-       'name'=>'required|unique:student_classes',
+       'name'=>'required',
        ]);
        $data= StudentClass::find($id);
        $data->name = $request->name;

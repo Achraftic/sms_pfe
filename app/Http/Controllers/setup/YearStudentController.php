@@ -15,7 +15,7 @@ class YearStudentController extends Controller
     public function index()
     {
         $data=YearStudent::all();
-        return view('setupMangement.yearview',compact('data'));
+        return view('setupMangement.year.yearview',compact('data'));
     }
 
     /**
@@ -25,7 +25,7 @@ class YearStudentController extends Controller
      */
     public function create()
     {
-        return view ('setupMangement.yearcreate');
+        return view ('setupMangement.year.yearcreate');
     }
 
     /**
@@ -65,7 +65,7 @@ class YearStudentController extends Controller
     public function edit($id)
     {
         $data= YearStudent::find($id);
-        return view("setupMangement.yearedit",compact('data'));
+        return view("setupMangement.year.yearedit",compact('data'));
     }
 
     /**
@@ -78,7 +78,7 @@ class YearStudentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required|unique:year_students',
+            'name'=>'required',
             ]);
             $data= YearStudent::find($id);
             $data->name = $request->name;

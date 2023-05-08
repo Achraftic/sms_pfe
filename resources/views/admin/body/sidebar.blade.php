@@ -99,15 +99,15 @@ $route=Route::current()->getName();
                             </div>
                         </a>
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
-                            <ul class="pl-9 mt-1 hidden" :class="open ? '!block' : 'hidden'">
+                            <ul class="pl-9 mt-1 hidden {{ ($prefix == '/users')?'!block':'' }}" :class="open ? '!block' : 'hidden'">
                                 <li class="mb-1 last:mb-0">
                                     <a class="block text-slate-400 active:text-slate-200 hover:text-slate-200 transition duration-150 truncate" href="{{route('users.create')}}">
-                                        <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Add User</span>
+                                        <span class="{{ ($route == 'users.create')?'text-indigo-500':'' }} text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Add User</span>
                                     </a>
                                 </li>
                                 <li class="mb-1 last:mb-0">
                                     <a class="block active:text-slate-200 text-slate-400 hover:text-slate-200 transition duration-150 truncate" href=" {{route('users.index')}} ">
-                                        <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">View User</span>
+                                        <span class="{{ ($route == 'users.index')?'text-indigo-500':'' }} text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">View User</span>
                                     </a>
                                 </li>
 
@@ -136,16 +136,16 @@ $route=Route::current()->getName();
                             </div>
                         </a>
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
-                            <ul class="pl-9 mt-1 hidden" :class="open ? '!block' : 'hidden'">
+                            <ul class="pl-9 mt-1 hidden  {{ ($prefix == '/profile')?'!block':'' }} " :class="open ? '!block' : 'hidden'">
 
                                 <li class="mb-1 last:mb-0">
                                     <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href=" {{route('profile.index')}} ">
-                                        <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Your Profile</span>
+                                        <span class="  {{ ($route == 'profile.index')?'text-indigo-500':'' }} text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Your Profile</span>
                                     </a>
                                 </li>
                                 <li class="mb-1 last:mb-0">
                                     <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href=" {{route('password.view')}} ">
-                                        <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Change Pasword</span>
+                                        <span class="   {{ ($route == 'password.view')?'text-indigo-500':'' }} text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Change Pasword</span>
                                     </a>
                                 </li>
 
@@ -172,20 +172,35 @@ $route=Route::current()->getName();
                             </div>
                         </a>
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
-                            <ul class="pl-9 mt-1 hidden" :class="open ? '!block' : 'hidden'">
+                            <ul class="pl-9 mt-1 hidden  {{ ($prefix == '/setups')?'!block':'' }}  " :class="open ? '!block' : 'hidden'">
                                 <li class="mb-1 last:mb-0">
                                     <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href=" {{route('student.class.index')}} ">
-                                        <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Student Class</span>
+                                        <span class=" {{ ($route == 'student.class.index')?'text-indigo-500':'' }} text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Student Class</span>
                                     </a>
                                 </li>
                                 <li class="mb-1 last:mb-0">
                                     <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href=" {{route('student.year.index')}} ">
-                                        <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Student Year</span>
+                                        <span class=" {{ ($route == 'student.year.index')?'text-indigo-500':'' }} text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Student Year</span>
                                     </a>
                                 </li>
                                 <li class="mb-1 last:mb-0">
                                     <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href=" {{route('student.group.index')}} ">
-                                        <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Student Group</span>
+                                        <span class=" {{ ($route == 'student.group.index')?'text-indigo-500':'' }} text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Student Group</span>
+                                    </a>
+                                </li>
+                                <li class="mb-1 last:mb-0">
+                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href=" {{route('student.shift.index')}} ">
+                                        <span class="{{ ($route == 'student.shift.index')?'text-indigo-500':'' }} text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Student Shift</span>
+                                    </a>
+                                </li>
+                                <li class="mb-1 last:mb-0">
+                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href=" {{route('fee.category.index')}} ">
+                                        <span class="{{ ($route == 'fee.category.index')?'text-indigo-500':'' }} text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Fee Category</span>
+                                    </a>
+                                </li>
+                                <li class="mb-1 last:mb-0">
+                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href=" {{route('fee.amount.index')}} ">
+                                        <span class="{{ ($route == 'fee.amount.index')?'text-indigo-500':'' }} text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Fee Amount</span>
                                     </a>
                                 </li>
                             </ul>

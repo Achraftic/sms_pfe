@@ -4,8 +4,8 @@ namespace App\Http\Controllers\setup;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\GroupStudent;
-class groupStudentController extends Controller
+use App\Models\FeeCategory;
+class FeeCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class groupStudentController extends Controller
      */
     public function index()
     {
-        $data=GroupStudent::all();
-        return view ("setupMangement.group.groupview",compact('data'));
+        $data=FeeCategory::all();
+        return view ("setupMangement.feeCategory.index",compact('data'));
     }
 
     /**
@@ -25,7 +25,9 @@ class groupStudentController extends Controller
      */
     public function create()
     {
-        return view ('setupMangement.group.groupcreate');
+          
+
+        return view ('setupMangement.feeCategory.create');
     }
 
     /**
@@ -37,12 +39,12 @@ class groupStudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|unique:group_students',
+            'name'=>'required|unique:fee_categories',
             ]);
-            $data=new GroupStudent();
+            $data=new FeeCategory();
             $data->name = $request->name;
             $data->save();
-            return redirect()->route('student.group.index')->with('success', 'groupe created successfully.');
+            return redirect()->route('fee.category.index')->with('success', ' fee category successfully created');
     }
 
     /**
@@ -53,7 +55,7 @@ class groupStudentController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -64,9 +66,9 @@ class groupStudentController extends Controller
      */
     public function edit($id)
     {
+        $data= FeeCategory::find($id);
+        return view("setupMangement.feeCategory.edit",compact('data'));
 
-        $data=GroupStudent::find($id);
-        return view('setupMangement.group.groupedit',compact('data'));
     }
 
     /**
@@ -81,12 +83,10 @@ class groupStudentController extends Controller
         $request->validate([
             'name'=>'required',
             ]);
-            $data=GroupStudent::find($id);
+            $data= FeeCategory::find($id);
             $data->name = $request->name;
             $data->save();
-            return redirect()->route('student.group.index')->with('success', 'User updated successfully.');
-
-
+            return redirect()->route('fee.category.index')->with('success', ' fee category successfully updated');
     }
 
     /**
@@ -97,10 +97,10 @@ class groupStudentController extends Controller
      */
     public function destroy($id)
     {
-        $data=GroupStudent::find($id);
-        if($data != null){
+        $data= FeeCategory::find($id);
+        if ($data != null) {
             $data->delete();
-            return redirect()->route('student.group.index');
+            return redirect()->route('fee.category.index')->with('info', ' fee category successfully deleted');
 
         }
     }
