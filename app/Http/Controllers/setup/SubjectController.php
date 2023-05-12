@@ -4,8 +4,8 @@ namespace App\Http\Controllers\setup;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ExamType;
-class ExamTypeController extends Controller
+use App\Models\Subject;
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ExamTypeController extends Controller
      */
     public function index()
     {
-        $data=ExamType::all();
-        return view ("setupMangement.examType.index",compact('data'));
+        $data=Subject::all();
+        return view ("setupMangement.subject.index",compact('data'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ExamTypeController extends Controller
      */
     public function create()
     {
-        return view ("setupMangement.examType.create");
+        return view ("setupMangement.subject.create");
     }
 
     /**
@@ -36,13 +36,15 @@ class ExamTypeController extends Controller
      */
     public function store(Request $request)
     {
+        $subject =new Subject();
         $request->validate([
-            'name'=>'required|unique:exam_types|regex:/^[a-zA-Z]+$/u',
-            ]);
-            $data=new ExamType ();
-            $data->name = $request->name;
-            $data->save();
-            return redirect()->route('exam.type.index')->with('success', 'exam type created successfully.');
+                "name"=>"required|unique:subjects"
+        ]);
+      
+
+        $subject->name=$request->name;
+        $subject->save();
+        return redirect()->route('school.subject.index')->with('success', 'subject created successful');
     }
 
     /**
@@ -64,9 +66,7 @@ class ExamTypeController extends Controller
      */
     public function edit($id)
     {
-
-        $data=ExamType::find($id);
-        return view('setupMangement.examType.edit',compact('data'));
+        //
     }
 
     /**
@@ -78,13 +78,7 @@ class ExamTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'=>'required|unique:exam_types|regex:/^[a-zA-Z]+$/u',
-            ]);
-            $data=ExamType::find($id);
-            $data->name = $request->name;
-            $data->save();
-            return redirect()->route('exam.type.index')->with('success', 'exam type updated successfully.');
+        //
     }
 
     /**
@@ -95,11 +89,6 @@ class ExamTypeController extends Controller
      */
     public function destroy($id)
     {
-        $data=ExamType::find($id);
-        if($data != null){
-            $data->delete();
-            return redirect()->route('exam.type.index')->with('info', 'exam type deleted successfully.');
-
-        }
+        //
     }
 }

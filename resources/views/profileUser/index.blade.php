@@ -20,9 +20,14 @@ else{
 
                 <div class=" " >
 
-                        <img src=" {{ asset('img/'.$img) }} " alt=""
+
+                            @if(Auth::user()->userType== "Student")
+                            <img src=" {{ asset('studentImage/'. Auth::user()->image) }} " alt=""
                             class=" hover:ring-green-400 w-32 h-32 flex m-auto  p-1 object-cover rounded-full ring-2 ring-green-300  cursor-pointer">
 
+                           @else <img src=" {{ asset('img/'. Auth::user()->image) }} " alt=""
+                           class=" hover:ring-green-400 w-32 h-32 flex m-auto  p-1 object-cover rounded-full ring-2 ring-green-300  cursor-pointer">
+                           @endif
                 </div>
 
                 <div class=" font-medium  bg-emerald-100 text-emerald-600 w-full rounded-full text-center  p-2 my-3">

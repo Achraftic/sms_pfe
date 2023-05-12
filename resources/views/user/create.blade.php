@@ -32,7 +32,7 @@
                     <span class="text-red-400 text-sm p-1"> {{$message}} </span>
                     @enderror
                 </div>
-                <div>
+                <div class="col-span-2">
                     <div class="flex space-x-2 items-center my-2">
                         <label class="block text-sm font-medium mb-1" for="Role">Role</label>
                         <span class="text-rose-500">*</span>
@@ -48,17 +48,7 @@
                     <span class="text-red-400 text-sm p-1"> {{$message}} </span>
                     @enderror
                 </div>
-                <div>
-                    <div class="flex space-x-2 items-center my-2">
-                        <label class="block text-sm font-medium mb-1" for="password">Password</label>
-                        <span class="text-rose-500">*</span>
-                    </div>
-                    <input id="password" class="form-input w-full" type="password" name="password" placeholder="no Symbole"/>
-                    @error('password')
 
-                    <span class="text-red-400 text-sm p-1"> {{$message}} </span>
-                    @enderror
-                </div>
                 <button class="btn bg-indigo-500 hover:bg-indigo-600 text-white sm:w-[150px] w-full ">Submit</button>
             </div>
         </form>

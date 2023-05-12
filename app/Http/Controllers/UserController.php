@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $data["alldata"]=User::all();
-        
+
         return view("user.index",$data);
     }
 
@@ -40,14 +40,15 @@ class UserController extends Controller
             'name'=>'required',
             'email'=>'required|unique:users|regex:/(.+)@(.+)\.(.+)/i',
             'userType'=>'required',
-            'password'=>'required',
+
 
        ]);
        $data = new User();
        $data->userType= $request->userType;
+       $data->role= $request->userType;
        $data->name= $request->name;
        $data->email= $request->email;
-       $data->password= bcrypt($request->pasword);
+       $data->password= bcrypt($request->email);
        $data->save();
        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
@@ -92,6 +93,7 @@ class UserController extends Controller
 
        $data=User::find($id);
        $data->userType= $request->userType;
+       $data->role= $request->userType;
        $data->name= $request->name;
        $data->email= $request->email;
        $data->save();

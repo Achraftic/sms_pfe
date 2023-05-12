@@ -660,110 +660,110 @@ const dashboardCard05 = () => {
 dashboardCard05();
 
 // Init #dashboard-06 chart
-const dashboardCard06 = () => {
-  const ctx = document.getElementById('dashboard-card-06');
-  if (!ctx) return;
-  // eslint-disable-next-line no-unused-vars
-  const chart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: ['United States', 'Italy', 'Other'],
-      datasets: [
-        {
-          label: 'Top Countries',
-          data: [
-            35, 30, 35,
-          ],
-          backgroundColor: [
-            '#6366f1',
-            '#60a5fa',
-            '#3730a3',
-          ],
-          hoverBackgroundColor: [
-            '#4f46e5',
-            '#3b82f6',
-            '#312e81',
-          ],
-          hoverBorderColor: '#ffffff',
-        },
-      ],
-    },
-    options: {
-      cutout: '80%',
-      layout: {
-        padding: 24,
-      },
-      plugins: {
-        legend: {
-          display: false,
-        },
-        htmlLegend: {
-          // ID of the container to put the legend in
-          containerID: 'dashboard-card-06-legend',
-        },
-      },
-      interaction: {
-        intersect: false,
-        mode: 'nearest',
-      },
-      animation: {
-        duration: 200,
-      },
-      maintainAspectRatio: false,
-    },
-    plugins: [{
-      id: 'htmlLegend',
-      afterUpdate(c, args, options) {
-        const legendContainer = document.getElementById(options.containerID);
-        const ul = legendContainer.querySelector('ul');
-        if (!ul) return;
-        // Remove old legend items
-        while (ul.firstChild) {
-          ul.firstChild.remove();
-        }
-        // Reuse the built-in legendItems generator
-        const items = c.options.plugins.legend.labels.generateLabels(c);
-        items.forEach((item) => {
-          const li = document.createElement('li');
-          li.style.margin = '4px';
-          // Button element
-          const button = document.createElement('button');
-          button.classList.add('btn-xs');
-          button.style.backgroundColor = '#ffffff';
-          button.style.borderWidth = '1px';
-          button.style.borderColor = '#e2e8f0';
-          button.style.color = '#64748b';
-          button.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.02)';
-          button.style.opacity = item.hidden ? '.3' : '';
-          button.onclick = () => {
-            c.toggleDataVisibility(item.index, !item.index);
-            c.update();
-          };
-          // Color box
-          const box = document.createElement('span');
-          box.style.display = 'block';
-          box.style.width = '8px';
-          box.style.height = '8px';
-          box.style.backgroundColor = item.fillStyle;
-          box.style.borderRadius = '2px';
-          box.style.marginRight = '4px';
-          box.style.pointerEvents = 'none';
-          // Label
-          const label = document.createElement('span');
-          label.style.display = 'flex';
-          label.style.alignItems = 'center';
-          const labelText = document.createTextNode(item.text);
-          label.appendChild(labelText);
-          li.appendChild(button);
-          button.appendChild(box);
-          button.appendChild(label);
-          ul.appendChild(li);
-        });
-      },
-    }],
-  });
-};
-dashboardCard06();
+// const dashboardCard06 = () => {
+//   const ctx = document.getElementById('dashboard-card-06');
+//   if (!ctx) return;
+//   // eslint-disable-next-line no-unused-vars
+//   const chart = new Chart(ctx, {
+//     type: 'doughnut',
+//     data: {
+//       labels: ['Male','Female'],
+//       datasets: [
+//         {
+//           label: 'Top Countries',
+//           data: [
+//              30, 35,
+//           ],
+//           backgroundColor: [
+//             '#6366f1',
+//             '#60a5fa',
+
+//           ],
+//           hoverBackgroundColor: [
+//             '#4f46e5',
+//             '#3b82f6',
+
+//           ],
+//           hoverBorderColor: '#ffffff',
+//         },
+//       ],
+//     },
+//     options: {
+//       cutout: '80%',
+//       layout: {
+//         padding: 24,
+//       },
+//       plugins: {
+//         legend: {
+//           display: false,
+//         },
+//         htmlLegend: {
+//           // ID of the container to put the legend in
+//           containerID: 'dashboard-card-06-legend',
+//         },
+//       },
+//       interaction: {
+//         intersect: false,
+//         mode: 'nearest',
+//       },
+//       animation: {
+//         duration: 200,
+//       },
+//       maintainAspectRatio: false,
+//     },
+//     plugins: [{
+//       id: 'htmlLegend',
+//       afterUpdate(c, args, options) {
+//         const legendContainer = document.getElementById(options.containerID);
+//         const ul = legendContainer.querySelector('ul');
+//         if (!ul) return;
+//         // Remove old legend items
+//         while (ul.firstChild) {
+//           ul.firstChild.remove();
+//         }
+//         // Reuse the built-in legendItems generator
+//         const items = c.options.plugins.legend.labels.generateLabels(c);
+//         items.forEach((item) => {
+//           const li = document.createElement('li');
+//           li.style.margin = '4px';
+//           // Button element
+//           const button = document.createElement('button');
+//           button.classList.add('btn-xs');
+//           button.style.backgroundColor = '#ffffff';
+//           button.style.borderWidth = '1px';
+//           button.style.borderColor = '#e2e8f0';
+//           button.style.color = '#64748b';
+//           button.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.02)';
+//           button.style.opacity = item.hidden ? '.3' : '';
+//           button.onclick = () => {
+//             c.toggleDataVisibility(item.index, !item.index);
+//             c.update();
+//           };
+//           // Color box
+//           const box = document.createElement('span');
+//           box.style.display = 'block';
+//           box.style.width = '8px';
+//           box.style.height = '8px';
+//           box.style.backgroundColor = item.fillStyle;
+//           box.style.borderRadius = '2px';
+//           box.style.marginRight = '4px';
+//           box.style.pointerEvents = 'none';
+//           // Label
+//           const label = document.createElement('span');
+//           label.style.display = 'flex';
+//           label.style.alignItems = 'center';
+//           const labelText = document.createTextNode(item.text);
+//           label.appendChild(labelText);
+//           li.appendChild(button);
+//           button.appendChild(box);
+//           button.appendChild(label);
+//           ul.appendChild(li);
+//         });
+//       },
+//     }],
+//   });
+// };
+// dashboardCard06();
 
 // Init #dashboard-08 chart
 const dashboardCard08 = () => {
@@ -1048,4 +1048,4 @@ const dashboardCard09 = () => {
     },
   });
 };
-dashboardCard09();    
+dashboardCard09();

@@ -213,19 +213,16 @@
                             </div>
                         </div>
                     </header>
-                    <h2 class="text-lg font-semibold text-slate-800 mb-2">Acme Plus</h2>
-                    <div class="text-xs font-semibold text-slate-400 uppercase mb-1">Sales</div>
+                    <h2 class="text-lg font-semibold text-slate-800 mb-2">Students</h2>
+                    <div class="text-xs font-semibold text-slate-400 uppercase mb-1">all</div>
                     <div class="flex items-start">
-                        <div class="text-3xl font-bold text-slate-800 mr-2">$24,780</div>
-                        <div class="text-sm font-semibold text-white px-1.5 bg-emerald-500 rounded-full">+49%</div>
+                        <div class="text-3xl font-bold text-slate-800 mr-2">  {{$maleCount+$femaleCount}} </div>
+
                     </div>
                 </div>
                 <!-- Chart built with Chart.js 3 -->
                 <!-- Check out src/js/components/dashboard-card-01.js for config -->
-                {{-- <div class="grow">
-                    <!-- Change the height attribute to adjust the chart height -->
-                    <canvas id="dashboard-card-01" width="389" height="128"></canvas>
-                </div> --}}
+             
             </div>
 
             <!-- Line chart (Acme teacher) -->
@@ -367,10 +364,10 @@
                 </div>
             </div>
 
-            <!-- Doughnut chart (Top Countries) -->
+            <!-- Doughnut chart (Gender) -->
             <div class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
                 <header class="px-5 py-4 border-b border-slate-100">
-                    <h2 class="font-semibold text-slate-800">Top Countries</h2>
+                    <h2 class="font-semibold text-slate-800">Gender</h2>
                 </header>
                 <!-- Chart built with Chart.js 3 -->
                 <!-- Check out src/js/components/dashboard-card-06.js for config -->
@@ -821,5 +818,114 @@
 
     </div>
 </main>
+<script defer type="module"  >
+const dashboardCard06 = () => {
+  const ctx = document.getElementById('dashboard-card-06');
+  if (!ctx) return;
+  // eslint-disable-next-line no-unused-vars
+  const chart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Male','Female'],
+      datasets: [
+        {
+          label: 'Gender',
+          data: [
+             {{$maleCount}} ,{{$femaleCount}},
+          ],
+          backgroundColor: [
+            '#6366f1',
+            '#60a5fa',
+
+          ],
+          hoverBackgroundColor: [
+            '#4f46e5',
+            '#3b82f6',
+
+          ],
+          hoverBorderColor: '#ffffff',
+        },
+      ],
+    },
+    options: {
+      cutout: '80%',
+      layout: {
+        padding: 24,
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+        htmlLegend: {
+          // ID of the container to put the legend in
+          containerID: 'dashboard-card-06-legend',
+        },
+      },
+      interaction: {
+        intersect: false,
+        mode: 'nearest',
+      },
+      animation: {
+        duration: 200,
+      },
+      maintainAspectRatio: false,
+    },
+    plugins: [{
+      id: 'htmlLegend',
+      afterUpdate(c, args, options) {
+        const legendContainer = document.getElementById(options.containerID);
+        const ul = legendContainer.querySelector('ul');
+        if (!ul) return;
+        // Remove old legend items
+        while (ul.firstChild) {
+          ul.firstChild.remove();
+        }
+        // Reuse the built-in legendItems generator
+        const items = c.options.plugins.legend.labels.generateLabels(c);
+        items.forEach((item) => {
+          const li = document.createElement('li');
+          li.style.margin = '4px';
+          // Button element
+          const button = document.createElement('button');
+          button.classList.add('btn-xs');
+          button.style.backgroundColor = '#ffffff';
+          button.style.borderWidth = '1px';
+          button.style.borderColor = '#e2e8f0';
+          button.style.color = '#64748b';
+          button.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.02)';
+          button.style.opacity = item.hidden ? '.3' : '';
+          button.onclick = () => {
+            c.toggleDataVisibility(item.index, !item.index);
+            c.update();
+          };
+          // Color box
+          const box = document.createElement('span');
+          box.style.display = 'block';
+          box.style.width = '8px';
+          box.style.height = '8px';
+          box.style.backgroundColor = item.fillStyle;
+          box.style.borderRadius = '2px';
+          box.style.marginRight = '4px';
+          box.style.pointerEvents = 'none';
+          // Label
+          const label = document.createElement('span');
+          label.style.display = 'flex';
+          label.style.alignItems = 'center';
+          const labelText = document.createTextNode(item.text);
+          label.appendChild(labelText);
+          li.appendChild(button);
+          button.appendChild(box);
+          button.appendChild(label);
+          ul.appendChild(li);
+        });
+      },
+    }],
+  });
+};
+
+dashboardCard06();
+
+
+</script>
 @endsection
 

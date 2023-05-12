@@ -38,9 +38,14 @@
                         @endphp
 
                         @if ( Auth::user()->image !== null)
+                          @if(Auth::user()->userType== "Student")
+                          <img src=" {{ asset('studentImage/'. Auth::user()->image) }} " alt=""
+                         class="avatar hover:ring-green-400 w-10 h-10 p-1 object-cover rounded-full ring-2 ring-green-300  cursor-pointer">
 
-                            <img src=" {{ asset('img/'. Auth::user()->image) }} " alt=""
-                                class="avatar hover:ring-green-400 w-10 h-10 p-1 object-cover rounded-full ring-2 ring-green-300  cursor-pointer">
+                         @else <img src=" {{ asset('img/'. Auth::user()->image) }} " alt=""
+                         class="avatar hover:ring-green-400 w-10 h-10 p-1 object-cover rounded-full ring-2 ring-green-300  cursor-pointer">
+                         @endif
+
 
 
 
@@ -82,7 +87,7 @@
         <style>
             .action {
                 min-height: 70px;
-                width: 160px;
+                min-width: 160px;
 
                 position: absolute;
                 top: 55px;

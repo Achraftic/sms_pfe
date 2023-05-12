@@ -14,7 +14,7 @@
 
             <!-- Left: Title -->
             <div class="mb-4 sm:mb-0">
-                <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Exam Type</h1>
+                <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Assign Subject</h1>
             </div>
 
             <!-- Right: Actions -->
@@ -33,11 +33,13 @@
                 </form>
 
                 <!-- Create invoice button -->
-                <a  href=" {{route('exam.type.create')}} " class="btn bg-indigo-500 hover:bg-indigo-600 text-white">
+
+
+                <a href=" {{route('assign.subject.create')}} "  class="btn bg-indigo-500 hover:bg-indigo-600 text-white">
                     <svg class="w-4 h-4 fill-current opacity-50 shrink-0 hover:rotate-180" viewBox="0 0 16 16">
                         <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
                     </svg>
-                    <span class="hidden xs:block ml-2">Add Exam Type</span>
+                    <span class="hidden xs:block ml-2"> Add Assign Subject</span>
                 </a>
 
             </div>
@@ -195,7 +197,7 @@
         <!-- Table -->
         <div class="bg-white shadow-lg rounded-sm border border-slate-200 mb-8">
             <header class="px-5 py-4">
-                <h2 class="font-semibold text-slate-800"> ExamType <span class="text-slate-400 font-medium"> ({{  count($data) }})</span></h2>
+                <h2 class="font-semibold text-slate-800"> Users <span class="text-slate-400 font-medium"> ({{  count($data) }})</span></h2>
             </header>
             <div x-data="handleSelect">
 
@@ -217,8 +219,9 @@
                                     <div class="font-semibold text-left">ID</div>
                                 </th>
 
+
                                 <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Name</div>
+                                    <div class="font-semibold text-left">Class Name</div>
                                 </th>
 
                                 <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
@@ -237,7 +240,7 @@
                             <!-- Row -->
 
 
-                            @foreach ($data as $key => $examType)
+                            @foreach ($data as $key => $assign)
                             <tr>
                                 <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
                                     <div class="flex items-center">
@@ -252,31 +255,33 @@
                                 </td>
 
 
-                                <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-medium text-slate-800"> {{$examType->name}} </div>
-                                </td>
 
                                 <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div>{{  $examType->created_at }}</div>
+                                    <div class="font-medium text-slate-800"> {{$assign->AssignClass->name}} </div>
+                                </td>
+
+
+                                <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+                                    <div>{{$assign->AssignClass->created_at}}</div>
                                 </td>
 
 
                                 <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px md:w-32">
                                     <div class="space-x-2 flex">
-                                        <a href="{{route('exam.type.edit',  $examType->id)}} " class="text-slate-400 hover:text-slate-500 rounded-full">
+                                        <a href=" {{route('assign.subject.edit',$assign->class_id)}} " class="text-slate-400 hover:text-slate-500 rounded-full">
                                             <span class="sr-only">Edit</span>
                                             <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32">
                                                 <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z" />
                                             </svg>
                                         </a>
 
-
-                                        <a href="  " class="text-rose-500 hover:text-rose-600 rounded- delete " id="">
+                                        <a href=" {{route('assign.subject.show',$assign->class_id)}} " class=" flex flex-column items-center justify-center text-indigo-500 hover:text-indigo-600 rounded-full " id="">
                                             <span class="sr-only">Delete</span>
-                                            <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32">
-                                                <path d="M13 15h2v6h-2zM17 15h2v6h-2z" />
-                                                <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z" />
-                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                              </svg>
+
                                         </a>
                                     </div>
                                 </td>

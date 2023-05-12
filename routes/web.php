@@ -4,13 +4,18 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\setup\YearStudentController;
 use App\Http\Controllers\setup\groupStudentController;
 use App\Http\Controllers\setup\ExamTypeController;
+use App\Http\Controllers\setup\SubjectController;
+use App\Http\Controllers\setup\AssignSubjectController;
 use App\Http\Controllers\setup\ShiftController;
 use App\Http\Controllers\setup\FeeAmountController;
 use App\Http\Controllers\setup\FeeCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\setup\SetupMangementController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\studentMange\StudentRegistrationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +40,7 @@ require __DIR__ . '/auth.php';
 
 require __DIR__ . '/auth.php';
 
-Route::get('/dashboard', function () {return view('admin.index');})->name('admin.index')->middleware('RedirectIfNotLoggedIn');
+Route::get('/dashboard', [DashboardController::class,'index'] )->name('admin.index')->middleware('RedirectIfNotLoggedIn');
 
 Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
@@ -120,11 +125,40 @@ Route::post('fee/amount/store', [FeeAmountController::class, 'store'])->name('fe
 
 // exam Type
 Route::get('exam/type/view', [ExamTypeController::class, 'index'])->name('exam.type.index')->middleware('RedirectIfNotLoggedIn');;
-// Route::get('fee/amount/create', [FeeAmountController::class, 'create'])->name('fee.amount.create')->middleware('RedirectIfNotLoggedIn');;
-// Route::post('fee/amount/store', [FeeAmountController::class, 'store'])->name('fee.amount.store');
-//  Route::get('fee/amount/edit/{fee_category_id}', [FeeAmountController::class, 'edit'])->name('fee.amount.edit')->middleware('RedirectIfNotLoggedIn');;
-//  Route::post('fee/amount/update/{fee_category_id}', [FeeAmountController::class, 'update'])->name('fee.amount.update');
-//  Route::get('fee/amount/detail/{fee_category_id}', [FeeAmountController::class, 'detail'])->name('fee.amount.detail');
+ Route::get('exam/type/create', [ExamTypeController::class, 'create'])->name('exam.type.create')->middleware('RedirectIfNotLoggedIn');;
+ Route::post('exam/type/store', [ExamTypeController::class, 'store'])->name('exam.type.store');
+ Route::get('exam/type/edit/{id}', [ExamTypeController::class, 'edit'])->name('exam.type.edit')->middleware('RedirectIfNotLoggedIn');;
+ Route::post('exam/type/update/{id}', [ExamTypeController::class, 'update'])->name('exam.type.update')->middleware('RedirectIfNotLoggedIn');;
+ Route::get('exam/type/delete/{id}', [ExamTypeController::class, 'destroy'])->name('exam.type.delete')->middleware('RedirectIfNotLoggedIn');;
 
+ // subject
+ Route::get('school/subject/view', [SubjectController::class, 'index'])->name('school.subject.index')->middleware('RedirectIfNotLoggedIn');;
+ Route::get('school/subject/create', [SubjectController::class, 'create'])->name('school.subject.create')->middleware('RedirectIfNotLoggedIn');;
+ Route::post('school/subject/store', [SubjectController::class, 'store'])->name('school.subject.store');
+//assign subject
+Route::get('assign/subject/view', [AssignSubjectController::class, 'index'])->name('assign.subject.index')->middleware('RedirectIfNotLoggedIn');;
+Route::get('assign/subject/create', [AssignSubjectController::class, 'create'])->name('assign.subject.create')->middleware('RedirectIfNotLoggedIn');;
+Route::post('assign/subject/store', [AssignSubjectController::class, 'store'])->name('assign.subject.store');
+Route::get('assign/subject/edit/{id}', [AssignSubjectController::class, 'edit'])->name('assign.subject.edit');
+Route::post('assign/subject/update/{id}', [AssignSubjectController::class, 'update'])->name('assign.subject.update');
+Route::get('assign/subject/show/{id}', [AssignSubjectController::class, 'show'])->name('assign.subject.show');
+});
+
+
+
+
+
+Route::prefix('setupsStudent')->group(function () {
+
+    Route::get('register/view', [StudentRegistrationController::class, 'index'])->name('student.index')->middleware('RedirectIfNotLoggedIn');
+    Route::get('register/create', [StudentRegistrationController::class, 'create'])->name('student.create')->middleware('RedirectIfNotLoggedIn');
+    Route::post('register/store', [StudentRegistrationController::class, 'store'])->name('student.store');
+    Route::get('register/view/search', [StudentRegistrationController::class, 'search'])->name('student.search')->middleware('RedirectIfNotLoggedIn');
+    Route::get('register/edit/{id}', [StudentRegistrationController::class, 'edit'])->name('student.edit')->middleware('RedirectIfNotLoggedIn');
+    Route::post('register/update/{id}', [StudentRegistrationController::class, 'update'])->name('student.update')->middleware('RedirectIfNotLoggedIn');
+    Route::get('register/promotion/edit/{id}', [StudentRegistrationController::class, 'promotionEdit'])->name('student.promotion')->middleware('RedirectIfNotLoggedIn');
+    Route::post('register/promotion/Update/{id}', [StudentRegistrationController::class, 'promotionUpdate'])->name('student.promotionUpdate')->middleware('RedirectIfNotLoggedIn');
+    Route::get('register/viewPdf/{id}', [StudentRegistrationController::class, 'viewPdf'])->name('student.viewPdf')->middleware('RedirectIfNotLoggedIn');
 
 });
+

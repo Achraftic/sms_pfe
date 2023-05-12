@@ -1,7 +1,7 @@
-{{-- {{print_r($alldata); }} --}}
 
 @extends('admin.admin_master')
 @section('content')
+
 
 <main>
 
