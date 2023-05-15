@@ -263,6 +263,7 @@
                             <thead
                                 class="text-xs font-semibold uppercase text-slate-500 bg-slate-50 border-t border-b border-slate-200">
                                 <tr>
+
                                     <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
                                         <div class="flex items-center">
                                             <label class="inline-flex">
@@ -289,9 +290,7 @@
                                     <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                                         <div class="font-semibold text-left">Year</div>
                                     </th>
-                                    <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                        <div class="font-semibold text-left">Roll</div>
-                                    </th>
+
                                     <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                                         <div class="font-semibold text-left">Code</div>
                                     </th>
@@ -341,11 +340,11 @@
                                         <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                                             <div class="font-medium text-slate-700"> {{ $student->year->name }} </div>
                                         </td>
-                                        @if (Auth::user()->userType == 'Admin')
+                                        {{-- @if (Auth::user()->userType == 'Admin')
                                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                                                 <div class="font-medium text-slate-700"> {{ $student->role }} </div>
                                             </td>
-                                        @endif
+                                        @endif --}}
                                         <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                                             <div class="font-medium text-slate-700"> {{ $student->student->code }} </div>
                                         </td>
@@ -354,7 +353,7 @@
 
                                         <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px md:w-32">
                                             <div class=" grid grid-cols-3 space-x-1  items-center">
-                                                <span> <a href=" {{ route('student.edit', $student->id) }} "
+                                                <span> <a href=" {{ route('student.edit', $student->student_id) }} "
                                                         class=" text-slate-400 hover:text-slate-600 rounded-full">
                                                         <span class="sr-only">Edit</span>
                                                         <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32">
@@ -363,7 +362,7 @@
                                                         </svg>
                                                     </a>
                                                 </span>
-                                                <span> <a href=" {{ route('student.promotion', $student->id) }} "
+                                                <span> <a href=" {{ route('student.promotion', $student->student_id) }} "
                                                         class="text-green-500 hover:text-green-600 rounded-full  "
                                                         id="">
                                                         <span class="sr-only">Delete</span>
@@ -377,7 +376,7 @@
                                                     </a>
                                                 </span>
                                                 <span>
-                                                    <a href=" {{ route('student.viewPdf', $student->id) }} "
+                                                    <a href=" {{ route('student.viewPdf', $student->student_id) }} "
                                                         class="text-indigo-500 hover:text-indigo-600 rounded-full">
                                                         <span class="sr-only">view</span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -462,5 +461,6 @@
             </div>
 
         </div>
+   
     </main>
 @endsection

@@ -17,7 +17,7 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
         },
-       
+
         colors: {
             'regal-blue': '#243c5a',
             // you can either spread `colors` to apply all the colors

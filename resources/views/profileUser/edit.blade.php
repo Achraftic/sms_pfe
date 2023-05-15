@@ -11,7 +11,7 @@
         }
 
         @endphp
-        <form action=" {{route('profile.update')}} " method="post" enctype="multipart/form-data"
+        <form action=" {{route('profile.update2')}} " method="post" enctype="multipart/form-data"
             class=" md:p-10 p-6  space-y-8 gap-4 w-[90%] sm:w-[80%] rounded-xl mx-auto  bg-white shadow-lg">
             @csrf
             <div class="mb-4 sm:mb-0">

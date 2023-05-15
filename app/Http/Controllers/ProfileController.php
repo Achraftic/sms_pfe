@@ -106,7 +106,7 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update2(Request $request)
     {
 
         $id = Auth::user()->id;

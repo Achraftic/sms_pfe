@@ -13,8 +13,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\setup\SetupMangementController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CalendarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\studentMange\StudentRegistrationController;
+use App\Http\Controllers\studentMange\FeeRegistrationController;
 
 
 /*
@@ -62,7 +64,7 @@ Route::prefix('profile')->group(function () {
     Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('RedirectIfNotLoggedIn');;
     Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/password/view', [ProfileController::class, 'passwordView'])->name('password.view')->middleware('RedirectIfNotLoggedIn');;
-    Route::post('/password/view', [ProfileController::class, 'passwordUpdate'])->name('password.update')->middleware('RedirectIfNotLoggedIn');;
+    Route::post('/password/view', [ProfileController::class, 'passwordUpdate'])->name('password.update2')->middleware('RedirectIfNotLoggedIn');;
 
 });
 
@@ -160,5 +162,15 @@ Route::prefix('setupsStudent')->group(function () {
     Route::post('register/promotion/Update/{id}', [StudentRegistrationController::class, 'promotionUpdate'])->name('student.promotionUpdate')->middleware('RedirectIfNotLoggedIn');
     Route::get('register/viewPdf/{id}', [StudentRegistrationController::class, 'viewPdf'])->name('student.viewPdf')->middleware('RedirectIfNotLoggedIn');
 
+    //    registration fee
+    Route::get('register/fee/view', [FeeRegistrationController::class, 'index'])->name('student.fee.index')->middleware('RedirectIfNotLoggedIn');
+    Route::get('register/fee/view/search', [FeeRegistrationController::class, 'search'])->name('student.fee.search')->middleware('RedirectIfNotLoggedIn');
+    Route::get('register/fee/viewPdf/{id}', [FeeRegistrationController::class, 'viewPdf'])->name('student.fee.viewPdf')->middleware('RedirectIfNotLoggedIn');
 });
 
+//calendar
+
+
+Route::get('/calendar', [CalendarController::class,'index'] )->name('calendar')->middleware('RedirectIfNotLoggedIn');
+Route::get('/calendar/create', [CalendarController::class,'create'] )->name('calendar.create')->middleware('RedirectIfNotLoggedIn');
+Route::post('/calendar/store', [CalendarController::class,'store'] )->name('calendar.store')->middleware('RedirectIfNotLoggedIn');

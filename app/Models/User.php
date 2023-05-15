@@ -12,6 +12,19 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function discounts()
+    {
+        return $this->hasManyThrough(
+            DiscountStudent::class,
+            AssignStudent::class,
+            'student_id', // Foreign key on students table
+            'assign_student_id', // Foreign key on discounts table
+            'id', // Local key on users table
+            'id' // Local key on students table
+        );
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *

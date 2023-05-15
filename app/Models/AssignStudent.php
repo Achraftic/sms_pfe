@@ -26,4 +26,6 @@ class AssignStudent extends Model
     return $this->belongsTo(DiscountStudent::class,'id','assign_student_id');
    }
 
+
+
 }

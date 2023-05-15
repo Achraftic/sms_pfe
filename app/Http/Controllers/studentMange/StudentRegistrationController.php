@@ -165,7 +165,7 @@ class StudentRegistrationController extends Controller
         $year_id=YearStudent::orderBy('id','desc')->first()->id;
         $class_id=StudentClass::orderBy('id','desc')->first()->id;
         $GroupStudent=GroupStudent::all();
-        $data=AssignStudent::where('id',$id)->get();
+        $data=AssignStudent::where('student_id',$id)->get();
         return view('studentMangement.Reg.edit',compact('data','GroupStudent','YearStudent','StudentClass','year_id','class_id','ShiftStudent','DiscountStudent'));
     }
 
@@ -220,6 +220,23 @@ class StudentRegistrationController extends Controller
 
     public function promotionEdit($id)
     {
+
+
+
+
+//          $current_year=AssignStudent::find($id)->year_id;//year student
+//          $current_id=AssignStudent::find($id)->student_id;//year student
+
+//          $idstudent=AssignStudent::where('id',$id)->first()->student_id;
+//          $stdID=AssignStudent::where('student_id',$idstudent)->orderBy('year_id','desc')->first()->student_id;//last
+//          $stdyear=AssignStudent::where('student_id',$idstudent)->orderBy('year_id','desc')->first()->year_id;//year student
+
+
+// if(  $current_year != $stdyear ){
+//     return abort(404);
+// }
+
+
         $ShiftStudent=ShiftStudent::all();
         $YearStudent=YearStudent::all();
         $StudentClass=StudentClass::all();
@@ -263,7 +280,7 @@ class StudentRegistrationController extends Controller
 
           $discount_student = new   DiscountStudent();
           $discount_student->assign_student_id = $assign_student->id;
-          $discount_student->fee_category_id = '1';
+          $discount_student->fee_category_id = '2';
           $discount_student->discount = $request->discount;
           $discount_student->save();
         });
